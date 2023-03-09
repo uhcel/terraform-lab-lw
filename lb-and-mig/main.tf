@@ -19,8 +19,9 @@ resource "google_compute_instance_template" "template" {
   machine_type = "n1-standard-1"
 
   disk {
-    auto_delete = true
-    boot       = true
+    source_image      = "debian-cloud/debian-11"
+    auto_delete       = true
+    boot              = true
   }
 
   network_interface {
