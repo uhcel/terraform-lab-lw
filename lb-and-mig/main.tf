@@ -21,9 +21,7 @@ resource "google_compute_instance_template" "template" {
   disk {
     auto_delete = true
     boot       = true
-    initialize_params {
-      image = "debian-cloud/debian-9"
-    }
+    source_image = "debian-cloud/debian-9"
   }
 
   network_interface {
@@ -40,7 +38,7 @@ resource "google_compute_instance_group_manager" "group" {
   zone               = "${var.region}-a"
   target_size        = 2
 
-  versions {
+  version {
     instance_template = google_compute_instance_template.template.self_link
   }
 
@@ -95,8 +93,8 @@ resource "google_compute_url_map" "url_map" {
 }
 
 # Create the internal HTTP load balancer
-resource "google_compute_internal_lb" "internal_lb" {
-  name            = "internal-lb"
-  region          = var.region
-  subnetwork      = google_compute_subnetwork.subnet
-}
+#resource "google_compute_internal_lb" "internal_lb" {
+#  name            = "internal-lb"
+#  region          = var.region
+#  subnetwork      = google_compute_subnetwork.subnet
+#}
