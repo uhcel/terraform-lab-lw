@@ -4,7 +4,7 @@ provider "google" {
   region  = var.region
 }
 
-# Create the subnet
+### Create the subnet
 resource "google_compute_subnetwork" "subnet" {
   name          = var.subnet_name
   ip_cidr_range = "10.0.1.0/24"
@@ -12,7 +12,7 @@ resource "google_compute_subnetwork" "subnet" {
   network       = "on-prem-vpc"
 }
 
-# Create the instance template
+### Create the instance template
 resource "google_compute_instance_template" "template" {
   name         = var.instance_template_name
   description  = "Instance template for the managed instance group"
