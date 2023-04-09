@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     google = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
       version = "4.44.1"
     }
   }
@@ -30,10 +30,10 @@ resource "google_service_networking_connection" "private_service_connection" {
 */
 
 resource "google_cloud_ids_endpoint" "example-endpoint" {
-    name     = "ids-ep-lw-tf"
-    location = "europe-west2-c"
-    network  = "shd-vpc-lw"
-    severity = "INFORMATIONAL"
+  name     = "${var.ids_name}-new"
+  location = var.ids_location
+  network  = var.ids_network
+  severity = "${var.ids_severity}"
 }
 
 output "lb_address" {
@@ -54,24 +54,24 @@ output "id" {
 ##### Currently
 
 resource "google_compute_packet_mirroring" "foobar" {
-  name = "my-mirroring"
-    depends_on = [google_cloud_ids_endpoint.example-endpoint]
-    description = "bar"
-    network {
+  name        = "my-mirroring"
+  depends_on  = [google_cloud_ids_endpoint.example-endpoint]
+  description = "bar"
+  network {
     url = "leszek-network"
   }
   collector_ilb {
-  #  url = "https://www.googleapis.com/compute/v1/projects/ac4a069376c701fcdp-tp/regions/europe-west2/forwardingRules/ids-fr-ids-ep-aroaffw6fxsw1mvq"
+    #  url = "https://www.googleapis.com/compute/v1/projects/ac4a069376c701fcdp-tp/regions/europe-west2/forwardingRules/ids-fr-ids-ep-aroaffw6fxsw1mvq"
     url = google_cloud_ids_endpoint.example-endpoint.endpoint_forwarding_rule
   }
   mirrored_resources {
     subnetworks {
       url = "ew-west2"
     }
-  } 
+  }
   filter {
     ip_protocols = ["tcp"]
-    cidr_ranges = ["10.10.0.0/16", "10.11.0.0/16"]
-    direction = "BOTH"
+    cidr_ranges  = ["10.10.0.0/16", "10.11.0.0/16"]
+    direction    = "BOTH"
   }
-} 
+}
