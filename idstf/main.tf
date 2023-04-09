@@ -12,8 +12,9 @@ provider "google" {
   region  = "europe-west2"
   zone    = "europe-west2-c"
 }
-
-### Cloud IDS
+#############################
+### Cloud IDS ###############
+#############################
 /*
 resource "google_compute_global_address" "service_range" {
     name          = "address"
