@@ -7,13 +7,13 @@ variable "project_name" {
 variable "vpc_name" {
   type        = string
   description = "VPC Network name"
-  default     = "new-vpclw-tf"
+  default     = "new-vpclw-tf-1"
 
 }
 
 variable "instance_name" {
   type        = string
   description = "GCE Instance name"
-  default     = "new-instance-test"
+  default     = "new-instance-test-1"
 
 }
