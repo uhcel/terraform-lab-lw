@@ -7,9 +7,10 @@ module "vm_and_vpc" {
   instance_name  = "instance-terraform-module"
 
 }
-terraform {
- backend "gcs" {
-   bucket  = "tfstate-lw-test"
-   prefix  = "terraform/state"
- }
-}
+  
+# terraform {
+# backend "gcs" {
+#   bucket  = "tfstate-lw-test"
+#   prefix  = "terraform/state"
+# }
+# }
