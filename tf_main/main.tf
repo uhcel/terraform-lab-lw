@@ -1,4 +1,8 @@
-# TF fffv
+# Enable compute engine APIs
+resource "google_project_service" "compute_engine" {
+  service = "compute.googleapis.com"
+}
+
 module "vm_and_vpc" {
   source = "../modules/vpc_and_vm"
 
