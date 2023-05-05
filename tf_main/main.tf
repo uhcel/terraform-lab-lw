@@ -1,5 +1,6 @@
 # Enable compute engine APIs
 resource "google_project_service" "compute_engine" {
+  project = "prj-bootstrap-3259"
   service = "compute.googleapis.com"
 }
 
